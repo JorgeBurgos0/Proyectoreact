@@ -37,7 +37,7 @@ function ProductList({ onEdit }) {
   };
 
   return (
-    <div className="products-container">
+    <div className="products-list-container">
       <h3>Listado de Productos</h3>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       

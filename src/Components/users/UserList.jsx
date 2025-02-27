@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../users/listU.css'
-
+import '../users/listU.css';
 
 function UserList({ onEdit }) {
   const [usuarios, setUsuarios] = useState([]);
+  const [buscar, setBuscar] = useState('');
   const [error, setError] = useState('');
   const token = localStorage.getItem('token');
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/users', {
+      const response = await axios.get(`http://localhost:8000/api/users?buscar=${buscar}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUsuarios(response.data);
@@ -21,7 +21,7 @@ function UserList({ onEdit }) {
 
   useEffect(() => {
     fetchUsers();
-  }, [token]);
+  }, [buscar]); // Se vuelve a llamar cada vez que cambia el término de búsqueda.
 
   const handleDelete = async (id) => {
     if (window.confirm('¿Seguro de eliminar este usuario?')) {
@@ -40,6 +40,15 @@ function UserList({ onEdit }) {
     <div className="users-list-container">
       <h3>Listado de Usuarios</h3>
       {error && <p className="error-message">{error}</p>}
+
+      <input 
+        type="text" 
+        placeholder="Buscar usuario" 
+        value={buscar} 
+        onChange={(e) => setBuscar(e.target.value)} 
+        className="user-search"
+      />
+
       <table className="users-table">
         <thead>
           <tr>

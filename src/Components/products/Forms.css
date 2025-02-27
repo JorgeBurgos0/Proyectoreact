@@ -1,7 +1,7 @@
 /* Contenedor principal */
 .product-form-container {
   text-align: center;
-  max-width: 400px;
+  width: 80%;
   margin: 0 auto;
   padding: 20px;
   background: rgba(0, 0, 0, 0.2);
