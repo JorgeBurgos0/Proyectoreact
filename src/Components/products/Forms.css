@@ -1,0 +1,97 @@
+/* Contenedor principal */
+.product-form-container {
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+/* Título */
+.product-form-container h3 {
+  margin-bottom: 20px;
+  color: white;
+  font-size: 1.5rem;
+}
+
+/* Mensaje de error */
+.product-form-container .error-message {
+  color: #ff6b6b;
+  margin-bottom: 15px;
+}
+
+/* Formulario */
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Inputs y textarea */
+.product-form input,
+.product-form textarea {
+  width: 95%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.product-form input::placeholder,
+.product-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Botones */
+.product-form button[type="submit"],
+.back-button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-form button[type="submit"] {
+  background: #333;
+  color: white;
+  margin-top: 20px;
+}
+
+.product-form button[type="submit"]:hover {
+  background: #555;
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  margin-top: 10px;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Estilos responsivos */
+@media (max-width: 480px) {
+  .product-form-container {
+    padding: 15px;
+  }
+
+  .product-form-container h3 {
+    font-size: 1.2rem;
+  }
+
+  .product-form input,
+  .product-form textarea,
+  .product-form button[type="submit"],
+  .back-button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
