@@ -40,6 +40,17 @@
   color: white;
 }
 
+/* Input para imágenes */
+.product-form input[type="file"] {
+  width: 95%;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  color: white;
+  cursor: pointer;
+}
+
+
 .product-form input::placeholder,
 .product-form textarea::placeholder {
   color: rgba(255, 255, 255, 0.7);

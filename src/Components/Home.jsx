@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Home.css'
+import './Home.css';
 
 function Home({ navigate }) {
   const [busqueda, setBusqueda] = useState('');
@@ -25,14 +25,12 @@ function Home({ navigate }) {
 
   const handleLogout = async () => {
     try {
-      // Opcional: Llama al endpoint de logout si deseas limpiar tokens en el servidor
       await axios.post('http://localhost:8000/api/logout', {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
     } catch (err) {
       console.error('Error al cerrar sesión:', err);
     } finally {
-      // Elimina el token y redirige al login
       localStorage.removeItem('token');
       navigate('login');
     }
@@ -54,17 +52,20 @@ function Home({ navigate }) {
         </button>
       </div>
       
-      <h2>Listado de Productos</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <h2>Productos</h2>
+      {error && <p className="error-message">{error}</p>}
       
-      <ul>
+      <ul className="product-list">
         {productos.map((producto) => (
-          <li key={producto.id}>
+          <li key={producto.id} className="product-item">
+            <img src={producto.imagen} alt={producto.nombre} className="product-thumbnail" />
             <span className="product-name">{producto.nombre}</span>
             <span className="product-price">${producto.precio}</span>
+            <span className="product-stock">Stock: {producto.stock}</span>
           </li>
         ))}
       </ul>
+
       
       <div className="nav-buttons">
         <button onClick={() => navigate('usuarios')}>👥 Gestión de Usuarios</button>

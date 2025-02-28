@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../products/list.css'
+import '../products/list.css';
 
 function ProductList({ onEdit }) {
   const [productos, setProductos] = useState([]);
@@ -54,6 +54,7 @@ function ProductList({ onEdit }) {
           <thead>
             <tr>
               <th>ID</th>
+              <th>Imagen</th>
               <th>Nombre</th>
               <th>Descripción</th>
               <th>Precio</th>
@@ -65,6 +66,9 @@ function ProductList({ onEdit }) {
             {productos.map((p) => (
               <tr key={p.id}>
                 <td>{p.id}</td>
+                <td>
+                  {p.imagen ? <img src={p.imagen} alt={p.nombre} className="product-image" /> : 'Sin imagen'}
+                </td>
                 <td>{p.nombre}</td>
                 <td>{p.descripcion}</td>
                 <td>{p.precio}</td>

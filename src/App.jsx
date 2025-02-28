@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Login from './Components/Login';
 import Register from './Components/Register';
@@ -7,15 +7,27 @@ import Users from './Components/Users';
 import Products from './Components/Products';
 
 function App() {
-  const [screen, setScreen] = useState('login');
-  const [user, setUser] = useState(null);
+  const [screen, setScreen] = useState(localStorage.getItem('screen') || 'login');
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
+
+  useEffect(() => {
+    localStorage.setItem('screen', screen);
+  }, [screen]);
+
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [user]);
 
   const handleLogin = (userData) => {
     setUser(userData);
-    navigate('login');
+    setScreen('home'); // Ir a home después de login
   };
 
   const navigate = (newScreen) => {
+    if (!user && newScreen !== 'login' && newScreen !== 'register') {
+      setScreen('login'); // Si no hay usuario, forzar login
+      return;
+    }
     setScreen(newScreen);
   };
 
